@@ -287,9 +287,9 @@ def lineBot(op):
                 if op.param2 is not admin:
                     pass
                 else:
-                    cl.kickoutFromGroup(op.param1[op.param2])
+                    cl.kickoutFromGroup(op.param1,[op.param2])
                     cl.findAndAddContactsByMid(op.param3)
-                    cl.inviteIntoGroup(op.param1[op.param3])
+                    cl.inviteIntoGroup(op.param1,[op.param3])
             if clMID in op.param3:
                 if op.param2 in admin:
                     pass
