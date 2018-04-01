@@ -12,6 +12,7 @@ cl = LINE("LINE帳號","LINE密碼")
 ghost = LINE("LINE帳號","LINE密碼")
 kicker01 = LINE("LINE帳號","LINE密碼")
 kicker02 = LINE("LINE帳號","LINE密碼")
+kicker03 = LINE("LINE帳號","LINE密碼")
 oepoll = OEPoll(cl)
 readOpen = codecs.open("read.json","r","utf-8")
 settingsOpen = codecs.open("temp.json","r","utf-8")
@@ -27,11 +28,12 @@ clMID = cl.profile.mid
 ghostMID = ghost.profile.mid
 kicker01MID = kicker01.profile.mid
 kicker02MID = kicker02.profile.mid
+kicker03MID = kicker03.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
 KAC = [kicker01,kicker02]
-admin = ['u28d781fa3ba9783fd5144390352b0c24',clMID,kicker01MID,kicker02MID,ghostMID]
+admin = ['u28d781fa3ba9783fd5144390352b0c24',clMID,kicker01MID,kicker02MID,kicker03MID,ghostMID]
 wait2 = {
     'readPoint':{},
     'readMember':{},
@@ -45,7 +47,7 @@ bl = [""]
 def cTime_to_datetime(unixtime):
     return datetime.datetime.fromtimestamp(int(str(unixtime)[:len(str(unixtime))-3]))
 def restartBot():
-    print ("[ INFO ] BOT RESETTED")
+    print ("[ 訊息 ] 機器重啟")
     backupData()
     python = sys.executable
     os.execl(python, python, *sys.argv)
@@ -302,6 +304,7 @@ def lineBot(op):
                     cl.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
+                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
                     G.preventedJoinByTicket = True
                     cl.updateGroup(G)
             if kicker01MID in op.param3:
@@ -328,9 +331,37 @@ def lineBot(op):
                     cl.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
+                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
                     G.preventedJoinByTicket = True
                     cl.updateGroup(G)
             if kicker02MID in op.param3:
+                if op.param2 in admin:
+                    pass
+                else:
+                    try:
+                        print ("[19]有人踢機器 群組名稱: " + str(group.name) +"\n踢人者: " + contact.displayName + "\nMid: " + contact.mid + "\n\n")
+                        kicker03.kickoutFromGroup(op.param1,[op.param2])
+                    except:
+                        try:
+                            random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+                        except:
+                            print ("機器踢人規制或是不在群組、\n["+op.param1+"]\nの\n["+op.param2+"]\n我踢不了他。\n把他加進黑名單。")
+                        if op.param2 in settings["blacklist"]:
+                            pass
+                        else:
+                            settings["blacklist"][op.param2] = True
+                    G = kicker03.getGroup(op.param1)
+                    G.preventedJoinByTicket = False
+                    kicker03.updateGroup(G)
+                    invsend = 0
+                    Ti = cl.reissueGroupTicket(op.param1)
+                    cl.acceptGroupInvitationByTicket(op.param1, Ti)
+                    kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
+                    kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
+                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
+                    G.preventedJoinByTicket = True
+                    cl.updateGroup(G)
+            if kicker03MID in op.param3:
                 if op.param2 in admin:
                     pass
                 else:
@@ -354,6 +385,7 @@ def lineBot(op):
                     cl.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
+                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
                     G.preventedJoinByTicket = True
                     cl.updateGroup(G)
         if op.type == 24:
@@ -432,6 +464,7 @@ def lineBot(op):
                             Ti = cl.reissueGroupTicket(to)
                             kicker01.acceptGroupInvitationByTicket(to, Ti)
                             kicker02.acceptGroupInvitationByTicket(to, Ti)
+                            kicker03.acceptGroupInvitationByTicket(to, Ti)
                             G.preventedJoinByTicket = True
                             cl.updateGroup(G)
                         else:
@@ -441,6 +474,7 @@ def lineBot(op):
                             Ti = cl.reissueGroupTicket(to)
                             kicker01.acceptGroupInvitationByTicket(to, Ti)
                             kicker02.acceptGroupInvitationByTicket(to, Ti)
+                            kicker03.acceptGroupInvitationByTicket(to, Ti)
                             G.preventedJoinByTicket = True
                             cl.updateGroup(G)
                 elif text.lower() == 'bot bye':
@@ -449,6 +483,7 @@ def lineBot(op):
                         try:
                             kicker01.leaveGroup(to)
                             kicker02.leaveGroup(to)
+                            kicker03.leaveGroup(to)
                         except:
                             pass
                 elif text.lower() == 'test':
@@ -460,6 +495,7 @@ def lineBot(op):
                     cl.sendMessage(to,'指令反應\n' + format(str(elapsed_time)) + '秒')
                     kicker01.sendMessage(to, 'ok')
                     kicker02.sendMessage(to, 'ok')
+                    kicker03.sendMessage(to, 'ok')
                 elif text.lower() == 'gj':
                     if msg.toType == 2:
                         G = cl.getGroup(msg.to)
@@ -529,7 +565,7 @@ def lineBot(op):
                             pass
                         else:
                             try:
-                                klist = [kicker01,kicker02]
+                                klist = [kicker01,kicker02,kicker03]
                                 kickers = random.choice(klist)
                                 kickers.kickoutFromGroup(to,[target])
                             except:
@@ -567,7 +603,7 @@ def lineBot(op):
                                 pass
                             else:
                                 try:
-                                    klist = [kicker01,kicker02]
+                                    klist = [kicker01,kicker02,kicker03]
                                     kickers = random.choice(klist)
                                     kickers.kickoutFromGroup(to,[target])
                                 except:
@@ -603,7 +639,7 @@ def lineBot(op):
                                 pass
                             else:
                                 try:
-                                    klist = [kicker01,kicker02]
+                                    klist = [kicker01,kicker02,kicker03]
                                     kickers = random.choice(klist)
                                     kickers.kickoutFromGroup(to,[target])
                                 except:
@@ -858,7 +894,7 @@ def lineBot(op):
                             print ("1")
                             cl.sendMessage(to, "沒有黑名單")
                             return
-                        klist = [kicker01,kicker02]
+                        klist = [kicker01,kicker02,kicker03]
                         kickers = random.choice(klist)
                         for jj in matched_list:
                             kickers.kickoutFromGroup(to, [jj])
