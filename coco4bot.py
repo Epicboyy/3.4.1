@@ -32,7 +32,7 @@ kicker03MID = kicker03.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
-KAC = [kicker01,kicker02]
+KAC = [kicker01,kicker02,kicker03]
 admin = ['u28d781fa3ba9783fd5144390352b0c24',clMID,kicker01MID,kicker02MID,kicker03MID,ghostMID]
 wait2 = {
     'readPoint':{},
