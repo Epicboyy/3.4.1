@@ -552,6 +552,7 @@ def lineBot(op):
                         else:
                             try:
                                 cl.kickoutFromGroup(to,[target])
+                                time.sleep(0.1)
                             except:
                                 pass
                 elif "Tkk " in msg.text:
@@ -568,6 +569,7 @@ def lineBot(op):
                                 klist = [kicker01,kicker02,kicker03]
                                 kickers = random.choice(klist)
                                 kickers.kickoutFromGroup(to,[target])
+                                time.sleep(0.1)
                             except:
                                 pass
                 elif "Nk " in msg.text:
@@ -586,6 +588,7 @@ def lineBot(op):
                             else:
                                 try:
                                     cl.kickoutFromGroup(to,[target])
+                                    time.sleep(0.1)
                                 except:
                                     pass
                 elif "Nkk " in msg.text:
@@ -606,6 +609,7 @@ def lineBot(op):
                                     klist = [kicker01,kicker02,kicker03]
                                     kickers = random.choice(klist)
                                     kickers.kickoutFromGroup(to,[target])
+                                    time.sleep(0.1)
                                 except:
                                     pass
                 elif "Zk" in msg.text:
@@ -623,6 +627,7 @@ def lineBot(op):
                             else:
                                 try:
                                     cl.kickoutFromGroup(to,[target])
+                                    time.sleep(0.1)
                                 except:
                                     pass
                 elif "Zkk" in msg.text:
@@ -642,6 +647,7 @@ def lineBot(op):
                                     klist = [kicker01,kicker02,kicker03]
                                     kickers = random.choice(klist)
                                     kickers.kickoutFromGroup(to,[target])
+                                    time.sleep(0.1)
                                 except:
                                     pass
                 elif "Vk:" in text:
