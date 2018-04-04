@@ -12,7 +12,6 @@ cl = LINE("LINE帳號","LINE密碼")
 ghost = LINE("LINE帳號","LINE密碼")
 kicker01 = LINE("LINE帳號","LINE密碼")
 kicker02 = LINE("LINE帳號","LINE密碼")
-kicker03 = LINE("LINE帳號","LINE密碼")
 oepoll = OEPoll(cl)
 readOpen = codecs.open("read.json","r","utf-8")
 settingsOpen = codecs.open("temp.json","r","utf-8")
@@ -28,12 +27,11 @@ clMID = cl.profile.mid
 ghostMID = ghost.profile.mid
 kicker01MID = kicker01.profile.mid
 kicker02MID = kicker02.profile.mid
-kicker03MID = kicker03.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
-KAC = [kicker01,kicker02,kicker03]
-admin = ['u28d781fa3ba9783fd5144390352b0c24',clMID,kicker01MID,kicker02MID,kicker03MID,ghostMID]
+KAC = [kicker01,kicker02]
+admin = ['u28d781fa3ba9783fd5144390352b0c24',clMID,kicker01MID,kicker02MID,ghostMID]
 wait2 = {
     'readPoint':{},
     'readMember':{},
@@ -112,12 +110,7 @@ def helpmessage():
 ↪ 「Protect List」查看踢人保護中的群組
 ════✪〘 自己 〙✪═══════
 ↪ 「Me」丟出自己好友資料
-↪ 「MyMid」查看自己系統識別碼
-↪ 「MyName」查看自己名字
-↪ 「MyBio」查看自己個簽
-↪ 「MyPicture」查看自己頭貼網址
-↪ 「MyVideoProfile」查看自己動態頭貼網址
-↪ 「MyCover」查看自己封面網址
+↪ 「Mid」查看自己系統識別碼
 ↪ 「Contact @」標註查看好友資料
 ↪ 「Mid @」標註查看系統識別碼
 ════✪〘 群組 〙✪═══════
@@ -126,15 +119,8 @@ def helpmessage():
 ↪ 「Ginfo」查看群組狀態
 ↪ 「Ri @」標註來回機票
 ↪ 「Tk @」標注踢出成員
-↪ 「Vk @」標註踢出並清除訊息
-↪ 「Vk:mid」使用系統識別碼踢出並清除訊息
 ↪ 「Nk Name」使用名子踢出成員
 ↪ 「Uk mid」使用系統識別碼踢出成員
-↪ 「NT Name」使用名子標註成員
-↪ 「Zk」踢出0字元
-↪ 「Zt」標註名字0字成員
-↪ 「Zm」丟出0字成員的系統識別碼
-↪ 「Zc」丟出0字成員好友資料
 ↪ 「Cancel」取消所有成員邀請
 ↪ 「Gcancel」取消所有群組邀請
 ↪ 「Gn Name」更改群組名稱
@@ -144,10 +130,8 @@ def helpmessage():
 ↪ 「Unban @」標註解除黑單
 ↪ 「Clear Ban」清空黑單
 ↪ 「Kill Ban」剔除黑單
-↪ 「Zk」踢出名字0字成員
 ↪ 「Nkk Name」使用名子踢出成員
 ↪ 「Tkk @」標注踢出成員
-↪ 「Zkk」踢出名字0字成員
 ════✪〘 特別 〙✪═══════
 ↪ 「Tagall」標註群組所有成員
 ↪ 「S N/F/R」已讀點 開啟/關閉/重設
@@ -172,8 +156,6 @@ def helpmessagetag():
 ↪ 「VideoProfile @」標註查看動態頭貼
 ↪ 「Cover @」標注查看封面
 ↪ 「Copy @」標註複製配置文件
-↪ 「MimicAdd @」標註增加模仿
-↪ 「MimicDel @」標註刪除模仿
 ↪ 「Ban @」標註加入黑單
 ↪ 「Unban @」標註解除黑單
 ↪ 「Tkk @」標注踢出成員
@@ -185,15 +167,11 @@ def helpmessagekick():
 ╔══[ 踢人指令 ]════════
 ↪ 「Ri @」標註來回機票
 ↪ 「Tk @」標注踢出成員
-↪ 「Vk @」標註踢出並清除訊息
-↪ 「Vk:mid」使用系統識別碼踢出並清除訊息
 ↪ 「Nk Name」使用名子踢出成員
 ↪ 「Uk mid」使用系統識別碼踢出成員
 ↪ 「Kill ban」踢出黑單成員
-↪ 「Zk」踢出名字0字成員
 ↪ 「Nkk Name」使用名子踢出成員
 ↪ 「Tkk @」標注踢出成員
-↪ 「Zkk」踢出名字0字成員
 ╚═〘 Credits By: ©CoCo™  〙
 """
     return helpMessageKick
@@ -304,7 +282,6 @@ def lineBot(op):
                     cl.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
-                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
                     G.preventedJoinByTicket = True
                     cl.updateGroup(G)
             if kicker01MID in op.param3:
@@ -331,37 +308,9 @@ def lineBot(op):
                     cl.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
-                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
                     G.preventedJoinByTicket = True
                     cl.updateGroup(G)
             if kicker02MID in op.param3:
-                if op.param2 in admin:
-                    pass
-                else:
-                    try:
-                        print ("[19]有人踢機器 群組名稱: " + str(group.name) +"\n踢人者: " + contact.displayName + "\nMid: " + contact.mid + "\n\n")
-                        kicker03.kickoutFromGroup(op.param1,[op.param2])
-                    except:
-                        try:
-                            random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-                        except:
-                            print ("機器踢人規制或是不在群組、\n["+op.param1+"]\nの\n["+op.param2+"]\n我踢不了他。\n把他加進黑名單。")
-                        if op.param2 in settings["blacklist"]:
-                            pass
-                        else:
-                            settings["blacklist"][op.param2] = True
-                    G = kicker03.getGroup(op.param1)
-                    G.preventedJoinByTicket = False
-                    kicker03.updateGroup(G)
-                    invsend = 0
-                    Ti = cl.reissueGroupTicket(op.param1)
-                    cl.acceptGroupInvitationByTicket(op.param1, Ti)
-                    kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
-                    kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
-                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
-                    G.preventedJoinByTicket = True
-                    cl.updateGroup(G)
-            if kicker03MID in op.param3:
                 if op.param2 in admin:
                     pass
                 else:
@@ -385,7 +334,6 @@ def lineBot(op):
                     cl.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker01.acceptGroupInvitationByTicket(op.param1, Ti)
                     kicker02.acceptGroupInvitationByTicket(op.param1, Ti)
-                    kicker03.acceptGroupInvitationByTicket(op.param1, Ti)
                     G.preventedJoinByTicket = True
                     cl.updateGroup(G)
         if op.type == 24:
@@ -464,7 +412,6 @@ def lineBot(op):
                             Ti = cl.reissueGroupTicket(to)
                             kicker01.acceptGroupInvitationByTicket(to, Ti)
                             kicker02.acceptGroupInvitationByTicket(to, Ti)
-                            kicker03.acceptGroupInvitationByTicket(to, Ti)
                             G.preventedJoinByTicket = True
                             cl.updateGroup(G)
                         else:
@@ -474,7 +421,6 @@ def lineBot(op):
                             Ti = cl.reissueGroupTicket(to)
                             kicker01.acceptGroupInvitationByTicket(to, Ti)
                             kicker02.acceptGroupInvitationByTicket(to, Ti)
-                            kicker03.acceptGroupInvitationByTicket(to, Ti)
                             G.preventedJoinByTicket = True
                             cl.updateGroup(G)
                 elif text.lower() == 'bot bye':
@@ -483,7 +429,6 @@ def lineBot(op):
                         try:
                             kicker01.leaveGroup(to)
                             kicker02.leaveGroup(to)
-                            kicker03.leaveGroup(to)
                         except:
                             pass
                 elif text.lower() == 'test':
@@ -495,7 +440,6 @@ def lineBot(op):
                     cl.sendMessage(to,'指令反應\n' + format(str(elapsed_time)) + '秒')
                     kicker01.sendMessage(to, 'ok')
                     kicker02.sendMessage(to, 'ok')
-                    kicker03.sendMessage(to, 'ok')
                 elif text.lower() == 'gj':
                     if msg.toType == 2:
                         G = cl.getGroup(msg.to)
@@ -566,7 +510,7 @@ def lineBot(op):
                             pass
                         else:
                             try:
-                                klist = [kicker01,kicker02,kicker03]
+                                klist = [kicker01,kicker02]
                                 kickers = random.choice(klist)
                                 kickers.kickoutFromGroup(to,[target])
                                 time.sleep(0.1)
@@ -606,76 +550,10 @@ def lineBot(op):
                                 pass
                             else:
                                 try:
-                                    klist = [kicker01,kicker02,kicker03]
+                                    klist = [kicker01,kicker02]
                                     kickers = random.choice(klist)
                                     kickers.kickoutFromGroup(to,[target])
                                     time.sleep(0.1)
-                                except:
-                                    pass
-                elif "Zk" in msg.text:
-                    gs = cl.getGroup(to)
-                    targets = []
-                    for g in gs.members:
-                        if g.displayName in "":
-                            targets.append(g.mid)
-                    if targets == []:
-                        pass
-                    else:
-                        for target in targets:
-                            if target in admin:
-                                pass
-                            else:
-                                try:
-                                    cl.kickoutFromGroup(to,[target])
-                                    time.sleep(0.1)
-                                except:
-                                    pass
-                elif "Zkk" in msg.text:
-                    gs = cl.getGroup(to)
-                    targets = []
-                    for g in gs.members:
-                        if g.displayName in "":
-                            targets.append(g.mid)
-                    if targets == []:
-                        pass
-                    else:
-                        for target in targets:
-                            if target in admin:
-                                pass
-                            else:
-                                try:
-                                    klist = [kicker01,kicker02,kicker03]
-                                    kickers = random.choice(klist)
-                                    kickers.kickoutFromGroup(to,[target])
-                                    time.sleep(0.1)
-                                except:
-                                    pass
-                elif "Vk:" in text:
-                    midd = msg.text.replace("Vk:","")
-                    cl.kickoutFromGroup(msg.to,[midd])
-                    cl.findAndAddContactsByMid(midd)
-                    cl.inviteIntoGroup(msg.to,[midd])
-                    cl.cancelGroupInvitation(msg.to,[midd])
-                elif "Vk " in msg.text:
-                        vkick0 = msg.text.replace("Vk ","")
-                        vkick1 = vkick0.rstrip()
-                        vkick2 = vkick1.replace("@","")
-                        vkick3 = vkick2.rstrip()
-                        _name = vkick3
-                        gs = cl.getGroup(msg.to)
-                        targets = []
-                        for s in gs.members:
-                            if _name in s.displayName:
-                                targets.append(s.mid)
-                        if targets == []:
-                            pass
-                        else:
-                            for target in targets:
-                                try:
-                                    cl.kickoutFromGroup(msg.to,[target])
-                                    cl.findAndAddContactsByMid(target)
-                                    cl.inviteIntoGroup(msg.to,[target])
-                                    cl.cancelGroupInvitation(msg.to,[target])
                                 except:
                                     pass
                 elif "Ulti " in msg.text:
@@ -731,32 +609,6 @@ def lineBot(op):
                         for target in targets:
                             mc += sendMessageWithMention(to,target) + "\n"
                         cl.sendMessage(to, mc)
-                elif text.lower() == 'zm':
-                    gs = cl.getGroup(to)
-                    lists = []
-                    for g in gs.members:
-                        if g.displayName in "":
-                            lists.append(g.mid)
-                    if lists == []:
-                        cl.sendMessage(to, "這個群組沒有名字0字的人")
-                    else:
-                        mc = ""
-                        for mi_d in lists:
-                            mc += "->" + mi_d + "\n"
-                        cl.sendMessage(to,mc)
-                elif text.lower() == 'zc':
-                    gs = cl.getGroup(to)
-                    lists = []
-                    for g in gs.members:
-                        if g.displayName in "":
-                            lists.append(g.mid)
-                    if lists == []:
-                        cl.sendMessage(to, "這個群組沒有名字0字的人")
-                    else:
-                        for ls in lists:
-                            contact = cl.getContact(ls)
-                            mi_d = contact.mid
-                            cl.sendContact(to, mi_d)
                 elif "Mc " in msg.text:
                     mmid = msg.text.replace("Mc ","")
                     cl.sendContact(to, mmid)
@@ -900,7 +752,7 @@ def lineBot(op):
                             print ("1")
                             cl.sendMessage(to, "沒有黑名單")
                             return
-                        klist = [kicker01,kicker02,kicker03]
+                        klist = [kicker01,kicker02]
                         kickers = random.choice(klist)
                         for jj in matched_list:
                             kickers.kickoutFromGroup(to, [jj])
@@ -992,7 +844,7 @@ def lineBot(op):
                         ret_ += "\n╠ 好友 : {}".format(str(len(contactlist)))
                         ret_ += "\n╠ 黑單 : {}".format(str(len(blockedlist)))
                         ret_ += "\n╠══[ 關於機器 ]"
-                        ret_ += "\n╠ 版本 : 萌羽特製機v1.2"
+                        ret_ += "\n╠ 版本 : 棉花糖特製機v1.0"
                         ret_ += "\n╠ 作者 : {}".format(creator.displayName)
                         ret_ += "\n╚══[ 未經許可禁止重製 ]"
                         cl.sendMessage(to, str(ret_))
@@ -1145,24 +997,8 @@ def lineBot(op):
                 elif text.lower() == 'me':
                     sendMessageWithMention(to, sender)
                     cl.sendContact(to, sender)
-                elif text.lower() == 'mymid':
+                elif text.lower() == 'mid':
                     cl.sendMessage(msg.to,"[MID]\n" +  sender)
-                elif text.lower() == 'myname':
-                    me = cl.getContact(sender)
-                    cl.sendMessage(msg.to,"[顯示名稱]\n" + me.displayName)
-                elif text.lower() == 'mybio':
-                    me = cl.getContact(sender)
-                    cl.sendMessage(msg.to,"[狀態消息]\n" + me.statusMessage)
-                elif text.lower() == 'mypicture':
-                    me = cl.getContact(sender)
-                    cl.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/" + me.pictureStatus)
-                elif text.lower() == 'myvideoprofile':
-                    me = cl.getContact(sender)
-                    cl.sendVideoWithURL(msg.to,"http://dl.profile.line-cdn.net/" + me.pictureStatus + "/vp")
-                elif text.lower() == 'mycover':
-                    me = cl.getContact(sender)
-                    cover = cl.getProfileCoverURL(sender)
-                    cl.sendImageWithURL(msg.to, cover)
                 elif msg.text.lower().startswith("contact "):
                     if 'MENTION' in msg.contentMetadata.keys()!= None:
                         names = re.findall(r'@(\w+)', text)
