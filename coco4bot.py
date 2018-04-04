@@ -80,7 +80,7 @@ def helpmessage():
     helpMessage = """
 ╔═══════════
 ♥ ✿ CoCo指令表 ✿ ♥
-萌羽の特製機
+棉花糖の特製機
 ════✪〘 查看指令表 〙✪════
 ↪ 「Help」查看全部指令
 ↪ 「HelpTag」查看標註指令
